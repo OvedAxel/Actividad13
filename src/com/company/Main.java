@@ -1,25 +1,22 @@
 package com.company;
 
-import com.sun.deploy.net.MessageHeader;
-
 import javax.swing.*;
-import java.sql.SQLOutput;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class Main {
 
-    private MessageHeader strings;
+    private List<String> strings;
 
     public static void main(String[] args) {
         Main main = new Main(); main.loadStrings("Mamberroi", "Azul", "Verde", "Blanco", "Rosa", "Comedor", "JohnMayer", "Escritorio", "Requisitos", "TheLastOfUS");
 
         int menuInit = Integer.parseInt(JOptionPane.showInputDialog("\t Welcome" + "\n Select an option"+"\n 1- Organize list by Alphabetic Order"+ "\n 2- Organize list by length"));
         if (menuInit == 1){
-            String sortAlphabeticByAnonymousClass =main.sortAlphabeticAnonymousClass();
-            String sortAlphabeticByLamda = main.sortAlphabeticLamdaFunction();
-            String sortAlphabeticByReference = main.sortAlphabeticReference();
+            List<String> sortAlphabeticByAnonymousClass =main.sortAlphabeticAnonymousClass();
+            List<String> sortAlphabeticByLamda = main.sortAlphabeticLamdaFunction();
+            List<String> sortAlphabeticByReference = main.sortAlphabeticReference();
             main.alphabeticAnonymousClass();
             main.Div();
             main.showList(sortAlphabeticByAnonymousClass);
@@ -31,9 +28,9 @@ public class Main {
             main.showList(sortAlphabeticByReference);
         }
         else if(menuInit == 2){
-            String sortLengthAnonymousClass = main.sortLengthAnonymousClass();
-            String sortLengthLamdaFunction= main.sortLengthLamdaFunction();
-            String sortLengthReference = main.sortLengthReference();
+            List<String> sortLengthAnonymousClass = main.sortLengthAnonymousClass();
+            List<String> sortLengthLamdaFunction= main.sortLengthLamdaFunction();
+            List<String> sortLengthReference = main.sortLengthReference();
             main.Div();
             main.lengthAnonymousClass();
             main.showList(sortLengthAnonymousClass);
@@ -53,15 +50,14 @@ public class Main {
     }
 
 
-}
 
-    private String sortAlphabeticLamdaFunction() {
-    }
+
+
     public void alphabeticAnonymousClass() {
     System.out.println("Alphabetic Order: Anonymous Class");
 }
 public void alphabeticLamda() {
-    System.out.println("Alphabetic Order: Lamda expression")
+    System.out.println("Alphabetic Order: Lamda expression");
 }
 public void alphabeticReference() {
     System.out.println("Alphabetic Order: Reference Method");
@@ -120,7 +116,7 @@ public void loadStrings(String...strings) { for (String string : strings) this.s
     }
     public List<String> sortLengthReference(){
         List<String> strings = this.strings;
-        SortLength sortLength = new SortLenght();
+        SortLength sortLength = new SortLength();
         strings.sort(sortLength::compare);
         return  strings;
     }
@@ -138,7 +134,7 @@ class SortAlphabetic implements Comparator{
         return o1.toString().compareToIgnoreCase(o2.toString());
     }
 }
-class SortLenght implements Comparator{
+class SortLength implements Comparator{
     @Override
     public int compare(Object o1, Object o2) {
         return o1.toString().length() - o2.toString().length();
